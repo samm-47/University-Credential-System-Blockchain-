@@ -1,0 +1,20 @@
+{
+  "name": "university-credential-system-blockchain-",
+  "version": "1.0.0",
+  "description": "This project implements a blockchain-based Identity and Access Management (IAM) system using smart contracts. The primary goals are to enable users to create decentralized identities (DIDs), allow institutions to issue verifiable credentials, and allow third parties to verify those credentials in a trustless manner.",
+  "main": "hardhat.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.2",
+    "hardhat": "^2.28.6"
+  },
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  }
+}

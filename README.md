@@ -6,115 +6,98 @@ This project implements a blockchain-based Identity and Access Management (IAM) 
 
 ## <ins>Architecture</ins>
 
-* DIDRegistry.sol (Stores user identities and public keys)
-
-* CredentialManager.sol (Handles credential issuance and verification)
-
-* CredentialStatus.sol: (Manages credential revocation and validity)
+* **DIDRegistry.sol**: Stores user identities, public keys, and service endpoints.
+* **CredentialManager.sol**: Handles credential issuance and verification, linking DIDs to off-chain IPFS storage.
+* **CredentialStatus.sol**: Manages credential revocation and active validity status.
 
 ## <ins>Technologies</ins>
 
-* Solidity
-
+* Solidity (v0.8.24)
 * Hardhat
-
 * Ethereum
-
 * IPFS (for off-chain storage)
-
 * Ethers.js
 
 ## <ins>Workflow</ins>
 
-1. User registers DID
-
-2. Issuer creates credential (stored on IPFS)
-
-2. Smart contract stores hash reference
-
-4. Verifier checks authenticity via blockchain
+1. **Identity Creation**: User and Issuer register their DIDs on the `DIDRegistry`.
+2. **Issuance**: Issuer creates a credential (stored off-chain on IPFS) and calls `CredentialManager` to log it.
+3. **Activation**: The smart contract stores the hash reference and marks it as valid in `CredentialStatus`.
+4. **Verification**: A verifier checks authenticity and revocation status via the blockchain.
 
 ## <ins>Installation & Execution</ins>
 
 ### 1. Clone the repository
 
-```bash
+\`\`\`bash
 git clone https://github.com/samm-47/University-Credential-System-Blockchain-.git
 cd University-Credential-System-Blockchain-
-```
+\`\`\`
 
-### 2. Install Node.js dependencies
+### 2. Install Dependencies
 
-This project is structured as a Hardhat project, so install Node.js dependencies first.
+Install the required Node.js packages and Hardhat environment:
 
-```bash
+\`\`\`bash
 npm install
-```
+npm install dotenv @nomicfoundation/hardhat-toolbox
+\`\`\`
 
-If the project does not already include a `package.json`, initialize one and install the common Hardhat dependencies:
+### 3. Running the Network & Tests
 
-```bash
-npm init -y
-npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
-```
+We utilize `npm` scripts to bypass global versioning issues with `npx`. Ensure your `package.json` includes the following in the `"scripts"` block:
+\`\`\`json
+"scripts": {
+  "node": "hardhat node",
+  "compile": "hardhat compile",
+  "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+  "test": "hardhat test"
+}
+\`\`\`
 
-### 3. Start a local blockchain
+**Start the local blockchain:**
+Open a dedicated terminal and run:
+\`\`\`bash
+npm run node
+\`\`\`
 
-Run a local Hardhat node in a separate terminal:
-
-```bash
-npx hardhat node
-```
-
-This starts a local Ethereum development network, usually at `http://127.0.0.1:8545`.
-
-### 4. Compile the smart contracts
-
-In another terminal, compile the contracts:
-
-```bash
+**Compile and Test:**
+In a separate terminal, compile the smart contracts and run the automated test suite (you can also use `npx hardhat` directly):
+\`\`\`bash
 npx hardhat compile
-```
-
-### 5. Deploy the contracts
-
-Use the deployment script to deploy to the local Hardhat network:
-
-```bash
-npx hardhat run scripts/deploy.js --network localhost
-```
-
-### 6. Test or interact with the contracts
-
-After deployment, you can add tests inside a `test/` folder and run them with:
-
-```bash
 npx hardhat test
-```
+\`\`\`
 
-You can also use the Hardhat console to interact with deployed contracts:
+**Expected Output:**
+\`\`\`text
+$ npx hardhat compile
+Downloading compiler 0.8.24
+Compiled 3 Solidity files successfully (evm target: paris).
 
-```bash
-npx hardhat console --network localhost
-```
+$ npx hardhat test
+  Identity and Credential System
+    ✔ Should register a DID for the user and institution
+    ✔ Should allow an institution to issue a credential to a user
 
-### 7. Optional: deploy to a public testnet
+  2 passing (360ms)
+\`\`\`
 
-To deploy outside your local machine, add an RPC URL and wallet private key to an `.env` file, then update `hardhat.config.js` to use that network.
+**Deploy Locally:**
+Deploy the architecture to your local Hardhat node:
+\`\`\`bash
+npm run deploy:local
+\`\`\`
 
-Example:
+### 4. Deploying to a Public Testnet (Sepolia)
 
-```env
+To deploy outside your local machine, create an `.env` file in the root directory:
+
+\`\`\`env
 SEPOLIA_RPC_URL=your_rpc_url_here
 PRIVATE_KEY=your_wallet_private_key_here
-```
+\`\`\`
 
-Then deploy with a command like:
-
-```bash
+Deploy using:
+\`\`\`bash
 npx hardhat run scripts/deploy.js --network sepolia
-```
-
-### Current project status
-
-At the moment, parts of this repository are still scaffolded or incomplete (for example, some contract files, `hardhat.config.js`, and `scripts/deploy.js` are placeholders). That means the commands above describe the intended way to run the project, but the missing implementation files need to be completed before compilation and deployment will work successfully.
+\`\`\`
