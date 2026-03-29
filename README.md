@@ -29,47 +29,47 @@ This project implements a blockchain-based Identity and Access Management (IAM) 
 
 ### 1. Clone the repository
 
-\`\`\`bash
+```bash
 git clone https://github.com/samm-47/University-Credential-System-Blockchain-.git
 cd University-Credential-System-Blockchain-
-\`\`\`
+```
 
 ### 2. Install Dependencies
 
 Install the required Node.js packages and Hardhat environment:
 
-\`\`\`bash
+```bash
 npm install
 npm install dotenv @nomicfoundation/hardhat-toolbox
-\`\`\`
+```
 
 ### 3. Running the Network & Tests
 
 We utilize `npm` scripts to bypass global versioning issues with `npx`. Ensure your `package.json` includes the following in the `"scripts"` block:
-\`\`\`json
+```json
 "scripts": {
   "node": "hardhat node",
   "compile": "hardhat compile",
   "deploy:local": "hardhat run scripts/deploy.js --network localhost",
   "test": "hardhat test"
 }
-\`\`\`
+```
 
 **Start the local blockchain:**
 Open a dedicated terminal and run:
-\`\`\`bash
+```bash
 npm run node
-\`\`\`
+```
 
 **Compile and Test:**
 In a separate terminal, compile the smart contracts and run the automated test suite (you can also use `npx hardhat` directly):
-\`\`\`bash
+```bash
 npx hardhat compile
 npx hardhat test
-\`\`\`
+```
 
 **Expected Output:**
-\`\`\`text
+```
 $ npx hardhat compile
 Downloading compiler 0.8.24
 Compiled 3 Solidity files successfully (evm target: paris).
@@ -80,24 +80,24 @@ $ npx hardhat test
     ✔ Should allow an institution to issue a credential to a user
 
   2 passing (360ms)
-\`\`\`
+```
 
 **Deploy Locally:**
 Deploy the architecture to your local Hardhat node:
-\`\`\`bash
+```bash
 npm run deploy:local
-\`\`\`
+```
 
 ### 4. Deploying to a Public Testnet (Sepolia)
 
 To deploy outside your local machine, create an `.env` file in the root directory:
 
-\`\`\`env
+```
 SEPOLIA_RPC_URL=your_rpc_url_here
 PRIVATE_KEY=your_wallet_private_key_here
-\`\`\`
+```
 
 Deploy using:
-\`\`\`bash
+```bash
 npx hardhat run scripts/deploy.js --network sepolia
-\`\`\`
+```
