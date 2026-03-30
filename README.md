@@ -2,7 +2,16 @@
 
 ## <ins>Overview</ins>
 
-This project implements a blockchain-based Identity and Access Management (IAM) system using smart contracts. The primary goals are to enable users to create decentralized identities (DIDs), allow institutions to issue verifiable credentials, and allow third parties to verify those credentials in a trustless manner.
+This project demonstrates a decentralized identity and credential system 
+for educational institutions. Universities can issue verifiable digital 
+credentials that students can own, control, and share with employers or 
+third parties without relying on centralized credential verification services.
+
+**Key Benefits:**
+- Tamper-proof credentials stored on the blockchain
+- Students retain full control of their credentials
+- Instant verification without contacting the issuing institution
+- Reduced fraud in credential verification processes
 
 ## <ins>Architecture</ins>
 
@@ -35,9 +44,9 @@ cd University-Credential-System-Blockchain-
 ```
 
 ### 2. Install Dependencies
-
+Before you begin, ensure you have the following installed:
+- **Node.js** (v16 or higher) - [Download here](https://nodejs.org/)
 Install the required Node.js packages and Hardhat environment:
-
 ```bash
 npm install
 npm install dotenv @nomicfoundation/hardhat-toolbox
