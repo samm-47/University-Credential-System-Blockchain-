@@ -1,4 +1,4 @@
-const hre = require("hardhat");
+import hre from "hardhat";
 
 async function main() {
   console.log("Starting contract deployments...");
@@ -17,7 +17,7 @@ async function main() {
   const credentialStatusAddress = await credentialStatus.getAddress();
   console.log(`CredentialStatus deployed to: ${credentialStatusAddress}`);
 
-  // 3. Deploy CredentialManager (Requires addresses from the previous deployments)
+  // 3. Deploy CredentialManager 
   const CredentialManager = await hre.ethers.getContractFactory("CredentialManager");
   const credentialManager = await CredentialManager.deploy(didRegistryAddress, credentialStatusAddress);
   await credentialManager.waitForDeployment();
