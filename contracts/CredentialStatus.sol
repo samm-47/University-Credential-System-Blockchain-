@@ -13,7 +13,6 @@ contract CredentialStatus {
     /// @notice Activates a newly minted credential
     function activateCredential(bytes32 _credentialHash) external {
         // Note: In a production environment, you should add access control 
-        // (e.g., only the CredentialManager or the specific issuer can call this)
         isValid[_credentialHash] = true;
         isRevoked[_credentialHash] = false;
         emit CredentialActivated(_credentialHash);
