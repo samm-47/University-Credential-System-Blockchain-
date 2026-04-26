@@ -114,3 +114,34 @@ Deploy using:
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia
 ```
+
+### 6. Frontend Setup
+
+**Step 1: Blockchain Setup (Terminal 1)**
+
+Open a dedicated terminal and spin up a local Hardhat node:
+```bash
+# Install dependencies
+npm install
+
+# Compile the Smart Contracts (Generates ABIs)
+npx hardhat compile
+
+# Start the local node
+npx hardhat node
+```
+Keep this terminal open. It must stay running for the system to work.
+
+**Step 2: Frontend Setup (Terminal 2)**
+
+Now, we bridge the contracts to the UI and launch the dashboard.
+```bash
+# Navigate to frontend
+cd frontend
+
+# Install frontend libraries
+npm install
+
+# Start the dashboard
+npm start
+```
