@@ -28,7 +28,7 @@ function App() {
     logEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [logs]);
 
-  // --- 1. DEPLOYMENT LOGIC ---
+  // 1. DEPLOYMENT LOGIC
   const deployAll = async () => {
     try {
       setLogs([]);
@@ -67,7 +67,7 @@ function App() {
     } catch (e) { addLog(`❌ DEPLOY ERROR: ${e.message}`); }
   };
 
-  // --- 2. INTERACTION LOGIC ---
+  // 2. INTERACTION LOGIC 
   const handleRegisterDID = async () => {
     try {
       addLog("Calling registerDID...");
@@ -133,7 +133,7 @@ function App() {
   );
 }
 
-// --- STYLES ---
+// STYLES 
 const containerStyle = { display: 'flex', height: '100vh', backgroundColor: '#121212', color: '#fff', fontFamily: 'monospace' };
 const sidebarStyle = { width: '350px', padding: '20px', borderRight: '1px solid #333', overflowY: 'auto' };
 const mainContentStyle = { flex: 1, display: 'flex', flexDirection: 'column', padding: '20px' };
